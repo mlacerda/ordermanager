@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.ciandt.com/EBS/BR/ordermanager/customer/v1"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="CustomerFS" targetNamespace="http://www.ciandt.com/EBS/BR/ordermanager/customer/v1">
+
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.ciandt.com/EBS/BR/ordermanager/customer/v1"
+			xmlns:tns="http://www.ciandt.com/EBO/BR/ordermanager/customer/v1"
+			elementFormDefault="qualified">
+			<xsd:import namespace="http://www.ciandt.com/EBO/BR/ordermanager/customer/v1"
+				schemaLocation="customer.xsd" />
+
+			<xsd:element name="FindCustomerRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="email" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FindCustomerResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="customerList" type="tns:Customer"
+							maxOccurs="unbounded" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="FindCustomerRequest">
+		<wsdl:part name="request" element="tns:FindCustomerRequest" />
+	</wsdl:message>
+	<wsdl:message name="FindCustomerResponse">
+		<wsdl:part name="response" element="tns:FindCustomerResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="CustomerFacade">
+		<wsdl:operation name="findCustomer">
+			<wsdl:input message="tns:FindCustomerRequest" />
+			<wsdl:output message="tns:FindCustomerResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="CustomerFacadeSOAP" type="tns:CustomerFacade">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<!-- Operation 1 -->
+		<wsdl:operation name="findCustomer">
+			<soap:operation
+				soapAction="http://www.ciandt.com/EBS/BR/ordermanager/customer/v1/find_customer" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="CustomerFacade">
+		<wsdl:port binding="tns:CustomerFacadeSOAP" name="CustomerFacadeSOAP">
+			<soap:address
+				location="http://www.ciandt.com/EBS/BR/ordermanager/customer/v1/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

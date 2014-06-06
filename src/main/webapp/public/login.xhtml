@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../templates/layout-no-menu.xhtml">
+	<ui:define name="content">
+		<h:form prependId="false" id="growlForm">
+			<p:growl id="growl" showDetail="false" />
+		</h:form>
+		<h:form prependId="false" id="dataForm">
+			<p:panel id="data" toggleable="false" toggleSpeed="250">
+				<f:facet name="header">
+					<h:outputText value="#{messages.label_login}" />
+				</f:facet>
+				<h:panelGrid columns="3">
+					<p:outputLabel for="j_username"
+						value="#{messages.label_view_login_username}:" />
+					<p:inputText id="j_username" maxlength="30" size="30"
+						required="true" value="#{loginController.username}"
+						requiredMessage="#{messages.message_login_username_required}" />
+					<p:message id="j_usernameMessage" for="j_username" display="icon" />
+
+					<p:outputLabel for="j_password"
+						value="#{messages.label_view_login_password}:" />
+					<p:password id="j_password" maxlength="30" size="30"
+						required="true" value="#{loginController.password}"
+						requiredMessage="#{messages.message_login_password_password}" />
+					<p:message id="j_passwordMessage" for="j_password" display="icon" />
+
+					<h:outputText value="" />
+					<p:commandButton id="loginBtn" ajax="false"
+						value="#{messages.label_view_login_button}"
+						action="#{loginController.login}" />
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+		<br />
+		#{messages.text_available_users}				
+	</ui:define>
+</ui:composition>
+</html>
+
+
+

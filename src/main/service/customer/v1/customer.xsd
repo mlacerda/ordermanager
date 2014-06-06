@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.ciandt.com/EBO/BR/ordermanager/customer/v1"
+	xmlns:cst="http://www.ciandt.com/EBO/BR/ordermanager/customer/v1">
+
+	<xsd:complexType name="Customer">
+		<xsd:sequence>
+			<xsd:element name="email" type="xsd:string" />
+			<xsd:element name="name" type="xsd:string" />
+			<xsd:element name="birthDay" type="xsd:date" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+</schema>

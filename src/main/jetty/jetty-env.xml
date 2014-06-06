@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+	<New id="cf" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>ConnectionFactory</Arg>
+		<Arg>
+			<New class="org.apache.activemq.ActiveMQConnectionFactory">
+				<Arg>vm://localhost?broker.persistent=false</Arg>
+			</New>
+		</Arg>
+	</New>
+
+
+	<New id="ProductPriceUpdateQueue" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>queue/ProductPriceUpdateQueue</Arg>
+		<Arg>
+			<New class="org.apache.activemq.command.ActiveMQQueue">
+				<Arg>ProductPriceUpdateQueue</Arg>
+			</New>
+		</Arg>
+	</New>
+	
+	<New id="DefaultDS" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/DefaultDS</Arg>
+		<Arg>
+			<New class="org.apache.commons.dbcp.BasicDataSource">
+				<Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
+				<Set name="url">jdbc:hsqldb:mem:defaultds;shutdown=true</Set>
+				<Set name="username">sa</Set>
+				<Set name="password"></Set>
+			</New>
+		</Arg>
+	</New>
+	
+	
+	<New id="tx" class="org.eclipse.jetty.plus.jndi.Transaction">
+		<Arg>
+			<New class="com.atomikos.icatch.jta.J2eeUserTransaction" />
+		</Arg>
+	</New>
+</Configure>
+
+

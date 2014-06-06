@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form prependId="false" id="growlForm">
+			<p:growl id="growl" showDetail="false" />
+		</h:form>
+		<h:form prependId="false" id="dataForm">
+			<p:panel id="data" toggleable="false" toggleSpeed="250">
+				<f:facet name="header">
+					<h:outputText value="#{customerController.name}" />
+				</f:facet>
+				<p:panelGrid style="width:739px">
+					<p:row>
+						<p:column>#{messages.label_customer_name}:</p:column>
+						<p:column>
+							<p:inputText value="#{customerController.filterName}" id="filterName"
+								maxlength="30" label="#{messages.label_filter_name}" size="30" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>#{messages.label_customer_email}:</p:column>
+						<p:column>
+							<p:inputText value="#{customerController.filterEmail}" id="filterEmail"
+								maxlength="50" label="#{messages.label_filter_email}" size="30" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2" style="text-align:center">
+							<p:commandButton ajax="false" update="dataList"
+								action="#{customerController.findCustomers}"
+								value="#{messages.label_search}" />
+								
+							<p:commandButton ajax="false" update=":dataForm:dataList :dataForm:filterName :dataForm:filterEmail"
+								action="#{customerController.clearSearch}"
+								value="#{messages.label_clear}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br></br>
+
+				<p:dataTable id="dataList" value="#{customerController.customersList}"
+					var="customer" resizableColumns="false" paginator="true"
+					paginatorTemplate=" {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,25,50" rows="10"
+					paginatorPosition="bottom" rendered="#{customerController.searched}">
+					<p:column style="width:250px">
+						<f:facet name="header">#{messages.label_customer_name}</f:facet>
+						<h:outputText value="#{customer.name}" />
+					</p:column>
+					<p:column style="width:250px">
+						<f:facet name="header">#{messages.label_customer_email}</f:facet>
+						<h:outputText value="#{customer.email}" />
+					</p:column>
+					<p:column style="width:117px;text-align:center">
+						<f:facet name="header">#{messages.label_customer_birthday}</f:facet>
+						<h:outputText value="#{customer.birthday}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column styleClass="action-column" rendered="#{facesContext.externalContext.isUserInRole('ROLE_APPUSERS_RW')}">
+						<f:facet name="header">#{messages.label_actions}</f:facet>
+						<p:commandButton id="viewButton" icon="ui-icon-zoomin"
+							update=":viewForm:viewPanelGrid"
+							oncomplete="viewDialogWidget.show()"
+							title="#{messages.label_view}">
+							<f:setPropertyActionListener value="#{customer}"
+								target="#{customerController.customer}" />
+						</p:commandButton>
+						<p:tooltip for="viewButton" value="#{messages.label_view}"
+							showEffect="fade" hideEffect="fade" />
+						<p:commandButton id="editButton" icon="ui-icon-pencil"
+							update=":editForm:editPanelGrid" action="#{customerController.onEdit}"
+							oncomplete="editDialogWidget.show()"
+							title="#{messages.label_edit}">
+							<f:setPropertyActionListener value="#{customer}"
+								target="#{customerController.customer}" />
+						</p:commandButton>
+						<p:tooltip for="editButton" value="#{messages.label_edit}"
+							showEffect="fade" hideEffect="fade" />
+						<p:commandButton id="deleteButton" icon="ui-icon-trash"
+							oncomplete="deleteDialogWidget.show()"
+							title="#{messages.label_delete}">
+							<f:setPropertyActionListener value="#{customer}"
+								target="#{customerController.customer}" />
+						</p:commandButton>
+						<p:tooltip for="deleteButton" value="#{messages.label_delete}"
+							showEffect="fade" hideEffect="fade" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+
+		<p:dialog id="createDialog" header="#{messages.label_create} Customer"
+			modal="true" widgetVar="createDialogWidget" dynamic="true"
+			visible="#{customerController.createDialogVisible}" resizable="false"
+			maximizable="false" showEffect="fade" hideEffect="face">
+			<p:ajax event="close" update=":dataForm:data"
+				listener="#{customerController.handleDialogClose}" />
+			<p:outputPanel id="createPanel">
+				<h:form id="createForm" enctype="multipart/form-data">
+					<h:panelGrid id="createPanelGrid" styleClass="dialog" columns="3">
+						<h:outputLabel value="#{messages.label_customer_name}*: "
+							for="nameCreateInput" id="nameCreateOutput" />
+						<p:inputText value="#{customerController.customer.name}"
+							id="nameCreateInput" maxlength="40" size="40" required="true"
+							label="#{messages.label_customer_name}" />
+						<p:message id="nameCreateInputMessage" for="nameCreateInput"
+							display="icon" />
+
+						<h:outputLabel value="#{messages.label_customer_email}*: "
+							for="emailCreateInput" id="emailCreateOutput" />
+						<p:inputText value="#{customerController.customer.email}"
+							id="emailCreateInput" maxlength="40" size="40" required="true"
+							label="#{messages.label_customer_email}"
+							validatorMessage="#{messages.label_customer_email}: #{messages.message_invalid_email_format}">
+						</p:inputText>
+						<p:message id="emailCreateInputMessage" for="emailCreateInput"
+							display="icon" />
+
+						<h:outputLabel value="#{messages.label_customer_birthday}*: "
+							for="birthdayCreateInput" id="birthdayCreateOutput" />
+						<p:calendar value="#{customerController.customer.birthday}"
+							id="birthdayCreateInput" pattern="dd/MM/yyyy" required="true"
+							label="#{messages.label_customer_birthday}" />
+						<p:message id="birthdayCreateInputMessage"
+							for="birthdayCreateInput" display="icon" />
+					</h:panelGrid>
+
+					<p:commandButton id="createSaveButton"
+						value="#{messages.label_save}" action="#{customerController.persist}"
+						update="createPanelGrid :growlForm:growl :dataForm:dataList" />
+					<p:commandButton id="createCloseButton"
+						value="#{messages.label_close}"
+						onclick="createDialogWidget.hide()" type="button" />
+				</h:form>
+			</p:outputPanel>
+		</p:dialog>
+
+		<p:dialog id="editDialog" header="#{messages.label_edit} Customer"
+			modal="true" widgetVar="editDialogWidget" dynamic="true"
+			resizable="false" maximizable="false" showEffect="fade"
+			hideEffect="face">
+			<p:ajax event="close" update=":dataForm:data"
+				listener="#{customerController.handleDialogClose}" />
+			<p:outputPanel id="editPanel">
+				<h:form id="editForm" enctype="multipart/form-data">
+				
+					<h:panelGrid id="editPanelGrid" styleClass="dialog" columns="3">
+						<h:outputLabel value="#{messages.label_customer_name}*: "
+							for="nameEditInput" id="nameEditOutput" />
+						<p:inputText value="#{customerController.customer.name}"
+							id="nameEditInput" maxlength="40" size="40" required="true"
+							label="#{messages.label_customer_name}" />
+						<p:message id="nameEditInputMessage" for="nameEditInput"
+							display="icon" />
+
+						<h:outputLabel value="#{messages.label_customer_email}*: "
+							for="emailEditInput" id="emailEditOutput" />
+						<p:inputText value="#{customerController.customer.email}"
+							id="emailEditInput" maxlength="40" size="40" required="true"
+							label="#{messages.label_customer_email}"
+							validatorMessage="#{messages.label_customer_email}: #{messages.message_invalid_email_format}">
+						</p:inputText>
+						<p:message id="emailEditInputMessage" for="emailEditInput"
+							display="icon" />
+
+						<h:outputLabel value="#{messages.label_customer_birthday}*: "
+							for="birthdayEditInput" id="birthdayEditOutput" />
+						<p:calendar value="#{customerController.customer.birthday}"
+							id="birthdayEditInput" pattern="dd/MM/yyyy" required="true"
+							label="#{messages.label_customer_birthday}" />
+						<p:message id="birthdayEditInputMessage"
+							for="birthdayEditInput" display="icon" />
+					</h:panelGrid>					
+				
+					<p:commandButton id="editSaveButton" value="#{messages.label_save}"
+						action="#{customerController.persist}"
+						update="editPanelGrid :growlForm:growl :dataForm:dataList" />
+					<p:commandButton id="editCloseButton"
+						value="#{messages.label_close}" onclick="editDialogWidget.hide()"
+						type="button" />
+				</h:form>
+			</p:outputPanel>
+		</p:dialog>
+
+		<p:dialog id="viewDialog" header="#{messages.label_view} Customer"
+			modal="true" widgetVar="viewDialogWidget" dynamic="true"
+			showEffect="fade" hideEffect="face">
+			<p:outputPanel id="viewPanel">
+				<h:form id="viewForm" enctype="multipart/form-data">
+					<h:panelGrid id="viewPanelGrid" styleClass="dialog" columns="2">
+						<h:outputLabel value="#{messages.label_customer_name}*: " />
+						<h:outputLabel value="#{customerController.customer.name}" />
+
+						<h:outputLabel value="#{messages.label_customer_email}*: " />
+						<h:outputLabel value="#{customerController.customer.email}" />
+
+
+						<h:outputLabel value="#{messages.label_customer_birthday}*: " />
+						<h:outputText value="#{customerController.customer.birthday}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</h:panelGrid>
+					<p:commandButton id="viewCloseButton"
+						value="#{messages.label_close}" onclick="viewDialogWidget.hide()"
+						type="button" />
+				</h:form>
+			</p:outputPanel>
+		</p:dialog>
+
+		<p:confirmDialog id="deleteDialog" widgetVar="deleteDialogWidget"
+			message="#{messages.label_delete_record}" showEffect="fade"
+			hideEffect="face" header="#{messages.label_confirm_deletion}"
+			severity="alert">
+			<p:outputPanel id="deletePanel">
+				<h:form id="deleteForm">
+					<p:commandButton id="deleteYesButton" value="#{messages.label_yes}"
+						action="#{customerController.delete}"
+						update=":dataForm:data :growlForm:growl"
+						oncomplete="deleteDialogWidget.hide()" />
+					<p:commandButton id="deleteNoButton" value="#{messages.label_no}"
+						onclick="deleteDialogWidget.hide()" type="button" />
+				</h:form>
+			</p:outputPanel>
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>
+</html>

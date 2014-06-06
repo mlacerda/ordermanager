@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FindCustomerResponse
+	xmlns="http://www.ciandt.com/EBS/BR/ordermanager/customer/v1"
+	xmlns:ns2="http://www.ciandt.com/EBO/BR/ordermanager/customer/v1">
+	<customerList>
+		<ns2:email>customer1@gmail.com</ns2:email>
+		<ns2:name>Customer 1</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer2@gmail.com</ns2:email>
+		<ns2:name>Customer 2</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer3@gmail.com</ns2:email>
+		<ns2:name>Customer 3</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer4@gmail.com</ns2:email>
+		<ns2:name>Customer 4</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer5@gmail.com</ns2:email>
+		<ns2:name>Customer 5</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer6@gmail.com</ns2:email>
+		<ns2:name>Customer 6</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer7@gmail.com</ns2:email>
+		<ns2:name>Customer 7</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer8@gmail.com</ns2:email>
+		<ns2:name>Customer 8</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer9@gmail.com</ns2:email>
+		<ns2:name>Customer 9</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer10@gmail.com</ns2:email>
+		<ns2:name>Customer 10</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer11@gmail.com</ns2:email>
+		<ns2:name>Customer 11</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer12@gmail.com</ns2:email>
+		<ns2:name>Customer 12</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer13@gmail.com</ns2:email>
+		<ns2:name>Customer 13</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer14@gmail.com</ns2:email>
+		<ns2:name>Customer 14</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer15@gmail.com</ns2:email>
+		<ns2:name>Customer 15</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer16@gmail.com</ns2:email>
+		<ns2:name>Customer 16</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer17@gmail.com</ns2:email>
+		<ns2:name>Customer 17</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer18@gmail.com</ns2:email>
+		<ns2:name>Customer 18</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer19@gmail.com</ns2:email>
+		<ns2:name>Customer 19</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer20@gmail.com</ns2:email>
+		<ns2:name>Customer 20</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer21@gmail.com</ns2:email>
+		<ns2:name>Customer 21</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer22@gmail.com</ns2:email>
+		<ns2:name>Customer 22</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer23@gmail.com</ns2:email>
+		<ns2:name>Customer 23</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer24@gmail.com</ns2:email>
+		<ns2:name>Customer 24</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer25@gmail.com</ns2:email>
+		<ns2:name>Customer 25</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer26@gmail.com</ns2:email>
+		<ns2:name>Customer 26</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer27@gmail.com</ns2:email>
+		<ns2:name>Customer 27</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer28@gmail.com</ns2:email>
+		<ns2:name>Customer 28</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer29@gmail.com</ns2:email>
+		<ns2:name>Customer 29</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer30@gmail.com</ns2:email>
+		<ns2:name>Customer 30</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer31@gmail.com</ns2:email>
+		<ns2:name>Customer 31</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer32@gmail.com</ns2:email>
+		<ns2:name>Customer 32</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer33@gmail.com</ns2:email>
+		<ns2:name>Customer 33</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer34@gmail.com</ns2:email>
+		<ns2:name>Customer 34</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer35@gmail.com</ns2:email>
+		<ns2:name>Customer 35</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer36@gmail.com</ns2:email>
+		<ns2:name>Customer 36</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer37@gmail.com</ns2:email>
+		<ns2:name>Customer 37</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer38@gmail.com</ns2:email>
+		<ns2:name>Customer 38</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer39@gmail.com</ns2:email>
+		<ns2:name>Customer 39</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer40@gmail.com</ns2:email>
+		<ns2:name>Customer 40</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer41@gmail.com</ns2:email>
+		<ns2:name>Customer 41</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer42@gmail.com</ns2:email>
+		<ns2:name>Customer 42</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer43@gmail.com</ns2:email>
+		<ns2:name>Customer 43</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer44@gmail.com</ns2:email>
+		<ns2:name>Customer 44</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer45@gmail.com</ns2:email>
+		<ns2:name>Customer 45</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer46@gmail.com</ns2:email>
+		<ns2:name>Customer 46</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer47@gmail.com</ns2:email>
+		<ns2:name>Customer 47</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer48@gmail.com</ns2:email>
+		<ns2:name>Customer 48</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer49@gmail.com</ns2:email>
+		<ns2:name>Customer 49</ns2:name>
+	</customerList>
+	<customerList>
+		<ns2:email>customer50@gmail.com</ns2:email>
+		<ns2:name>Customer 50</ns2:name>
+	</customerList>
+</FindCustomerResponse>

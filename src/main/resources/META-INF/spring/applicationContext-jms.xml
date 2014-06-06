@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-3.1.xsd 
+						http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+						http://www.springframework.org/schema/jee 
+						http://www.springframework.org/schema/jee/spring-jee-3.1.xsd 
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+						http://www.springframework.org/schema/cache 
+						http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+						http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+						http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+						">
+						
+	<!-- ============================================================================ -->
+	<!-- =============== ASYNCHRONOUS (MESSAGING) FRAMEWORK ========================= -->
+	<!-- ============================================================================ -->
+
+	<jee:jndi-lookup jndi-name="ConnectionFactory" id="connectionFactory"
+		expected-type="javax.jms.ConnectionFactory" />
+
+	<jee:jndi-lookup jndi-name="queue/ProductPriceUpdateQueue" id="productPriceUpdateQueue"
+		expected-type="javax.jms.Queue" />
+
+	<bean id="productPriceUpdateContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="productPriceUpdateQueue" />
+		<property name="messageListener" ref="updateProductPriceListener" />
+	</bean>
+
+</beans>

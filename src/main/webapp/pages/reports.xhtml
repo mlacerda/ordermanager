@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form prependId="false" id="growlForm">
+			<p:growl id="growl" showDetail="false" />
+		</h:form>
+		<h:form prependId="false" id="dataForm">
+			<p:panel id="data" toggleable="false" toggleSpeed="250">
+				<f:facet name="header">
+					<h:outputText value="#{reportsController.name}" />
+				</f:facet>
+				<p:panelGrid style="width:739px">
+					<p:row>
+						<p:column>
+							<p:commandButton ajax="false"
+								action="#{reportsController.generateCustomerListPdf}"
+								value="#{messages.label_reportPDF}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column> 
+							<p:commandButton ajax="false" 
+								action="#{reportsController.generateCustomerListXls}"
+								value="#{messages.label_reportXLS}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br></br>
+				
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
